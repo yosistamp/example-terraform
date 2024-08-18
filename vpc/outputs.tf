@@ -10,6 +10,10 @@ output "private_subnet_ids" {
   value = module.vpc.private_subnet_ids
 }
 
+output "private_subnet_cidrs" {
+  value = module.vpc.private_subnet_cidrs
+}
+
 output "vpc_endpoint_sg_id" {
   value = module.vpc.vpc_endpoint_sg_id
 }
