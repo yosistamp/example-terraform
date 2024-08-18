@@ -1,0 +1,3 @@
+# OIDC
+
+GitHubからOIDCを利用してAWSのECRに接続するためのサンプルコード

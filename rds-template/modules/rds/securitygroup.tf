@@ -2,52 +2,18 @@ resource "aws_security_group" "lambda" {
   name        = "lambda-sg"
   description = "Security group for Lambda function"
   vpc_id      = var.vpc_id
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
 }
 
 resource "aws_security_group" "rds_proxy" {
   name        = "rds-proxy-sg"
   description = "Security group for RDS Proxy"
   vpc_id      = var.vpc_id
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
 }
 
 resource "aws_security_group" "rds" {
   name        = "rds-sg"
   description = "Security group for RDS instance"
   vpc_id      = var.vpc_id
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-resource "aws_security_group" "cloud9" {
-  name        = "cloud9-sg"
-  description = "Security group for RDS Proxy"
-  vpc_id      = var.vpc_id
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
 }
 
 resource "aws_security_group_rule" "lambda_to_rds_proxy" {
@@ -59,6 +25,15 @@ resource "aws_security_group_rule" "lambda_to_rds_proxy" {
   security_group_id        = aws_security_group.lambda.id
 }
 
+resource "aws_security_group_rule" "lambda_to_vpc_endpoint" {
+  type                     = "egress"
+  from_port                = 443
+  to_port                  = 443
+  protocol                 = "tcp"
+  source_security_group_id = var.vpc_endpoint_sg_id
+  security_group_id        = aws_security_group.lambda.id
+  
+}
 resource "aws_security_group_rule" "rds_proxy_from_lambda" {
   type                     = "ingress"
   from_port                = 5432

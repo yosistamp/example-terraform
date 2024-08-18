@@ -46,6 +46,7 @@ resource "aws_s3_bucket_public_access_block" "tfstate_bucket_public_access" {
 resource "aws_dynamodb_table" "terraform_state_lock" {
   count          = var.terraform_state_lock_table_name == null ? 0 : 1
   name           = var.terraform_state_lock_table_name
+  billing_mode  = "PAY_PER_REQUEST"
   read_capacity  = 1
   write_capacity = 1
   hash_key       = "LockID"

@@ -5,7 +5,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     region         = "ap-northeast-1"
-    key            = "terraform-rds.tfstate"
+    key            = "terraform-vpc.tfstate"
     encrypt        = true
     dynamodb_table = "terraform-tfstate-lock"
   }
@@ -23,15 +23,6 @@ module "vpc" {
   project               = var.project
   vpc_cidr              = var.vpc.vpc_cidr
   public_subnet         = var.vpc.public_subnet
-  lambda_private_subnet = var.vpc.lambda_private_subnet
-  rds_private_subnet    = var.vpc.rds_private_subnet
-}
-
-module "rds" {
-  source                 = "./modules/rds"
-  project                = var.project
-  vpc_id                 = module.vpc.vpc_id
-  rds_private_subnet_ids = module.vpc.rds_private_subnet_ids
-  rds_private_subnet     = var.vpc.rds_private_subnet
-  vpc_endpoint_sg_id     = module.vpc.vpc_endpoint_sg_id
+  private_subnet = var.vpc.private_subnet
+  vpc_endpoint    = var.vpc_endpoint
 }
