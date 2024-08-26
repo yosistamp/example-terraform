@@ -18,9 +18,9 @@ terraform {
   }
 }
 
-module "vpc" {
+module "ecs" {
   source                = "./modules/ecs"
-  cluster_name               = var.cluster_name
+  cluster_name          = var.cluster_name
 }
 
 module "alb" {

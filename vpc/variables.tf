@@ -57,7 +57,8 @@ variable "vpc_endpoint" {
   default = [
     "com.amazonaws.ap-northeast-1.ecr.dkr",
     "com.amazonaws.ap-northeast-1.ecr.api",
-    "com.amazonaws.ap-northeast-1.logs"
+    "com.amazonaws.ap-northeast-1.logs",
+    "com.amazonaws.ap-northeast-1.ecr.xray"
   ]
 }
 

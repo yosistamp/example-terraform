@@ -1,0 +1,10 @@
+variable "name" {}
+variable "cluster_id" {}
+variable "desired_count" {}
+variable "health_check_grace_period_seconds" {}
+variable "launch_type" {}
+variable "force_new_deployment" {}
+variable "target_group_arn" {}
+variable "private_subnet_ids" {}
+variable "vpc_id" {}
+variable "private_subnet_cidrs" {}
