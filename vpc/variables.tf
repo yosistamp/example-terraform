@@ -55,10 +55,13 @@ variable "vpc" {
 variable "vpc_endpoint" {
   description = "VPCエンドポイント設定"
   default = [
+#    "com.amazonaws.ap-northeast-1.xray",
+#    "com.amazonaws.ap-northeast-1.sns",
+#    "com.amazonaws.ap-northeast-1.ssm",
+#    "com.amazonaws.ap-northeast-1.sqs"
     "com.amazonaws.ap-northeast-1.ecr.dkr",
     "com.amazonaws.ap-northeast-1.ecr.api",
     "com.amazonaws.ap-northeast-1.logs",
-    "com.amazonaws.ap-northeast-1.ecr.xray"
   ]
 }
 
